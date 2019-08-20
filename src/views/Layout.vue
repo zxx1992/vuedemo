@@ -48,12 +48,7 @@
           @on-click="getTabsContent"
         >
           <TabPane v-for="(item, index) in tabs" :key="index" :label="item.index"></TabPane>
-          <!-- <TabPane label="2" icon="logo-apple" v-if="tab1">2</TabPane>
-          <TabPane label="3" icon="logo-apple" v-if="tab2">3</TabPane>-->
         </Tabs>
-        <!-- <Card>
-          <div style="height: 600px">Content</div>
-        </Card>-->
         <router-view/>
       </Content>
     </Layout>
