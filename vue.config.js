@@ -18,12 +18,12 @@ module.exports = {
     devServer: {
         port: 8080, // 端口号
         host: "localhost",
-        https: false, // https:{type:Boolean}
-        open: false, //配置自动启动浏览器
-        // 代理
-        proxy: {
+        https: true, // https:{type:Boolean}
+        open: true, //配置自动启动浏览器
+        // // 代理
+        // proxy: {
 
-        }
+        // }
     },
     // pwa是一个插件，这里的配置只是向PWA插件传递选项
     // eg:项目打包上线，根目录下的图片不会打包到img文件夹下，所以这里做一个配置
