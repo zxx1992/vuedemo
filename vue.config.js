@@ -18,7 +18,7 @@ module.exports = {
     devServer: {
         port: 8080, // 端口号
         host: "localhost",
-        https: true, // https:{type:Boolean}
+        https: false, // https:{type:Boolean}
         open: true, //配置自动启动浏览器
         // // 代理
         // proxy: {

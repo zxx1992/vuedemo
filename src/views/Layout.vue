@@ -4,7 +4,7 @@
       <Menu
         theme="dark"
         width="auto"
-        active-name="1-3"
+        active-name="1-1"
         accordion
         :open-names="['1']"
         :class="menuitemClasses"
@@ -13,42 +13,22 @@
           <template slot="title">
             <Icon type="ios-paper" />文科
           </template>
-          <MenuItem :to="{ name: 'home' }" name="1-1">政治</MenuItem>
-          <MenuItem :to="{ name: 'home' }" name="1-2">历史</MenuItem>
-          <MenuItem :to="{ name: 'home' }" name="1-3">地理</MenuItem>
+          <MenuItem :to="{ name: 'shopbox' }" name="1-1">购物车</MenuItem>
+          <MenuItem :to="{ name: '' }" name="1-2">历史</MenuItem>
+          <MenuItem :to="{ name: '' }" name="1-3">地理</MenuItem>
         </Submenu>
         <Submenu name="2">
           <template slot="title">
             <Icon type="ios-paper" />理科
           </template>
-          <MenuItem :to="{ name: 'about' }" name="2-1">物理</MenuItem>
-          <MenuItem :to="{ name: 'about' }" name="2-2">化学</MenuItem>
-          <MenuItem :to="{ name: 'about' }" name="2-3">生物</MenuItem>
+          <MenuItem :to="{ name: '' }" name="2-1">物理</MenuItem>
+          <MenuItem :to="{ name: '' }" name="2-2">化学</MenuItem>
+          <MenuItem :to="{ name: '' }" name="2-3">生物</MenuItem>
         </Submenu>
       </Menu>
     </Sider>
     <Layout class="layout_sec">
-      <Header class="header"></Header>
       <Content class="content">
-        <!-- <Breadcrumb class="nav_sec" separator=">">
-          <BreadcrumbItem :to="{name:'about'}">
-            <Icon type="ios-home-outline"></Icon>课程1
-          </BreadcrumbItem>
-          <BreadcrumbItem :to="{name:'home'}">
-            <Icon type="ios-home-outline"></Icon>课程2
-          </BreadcrumbItem>
-          <BreadcrumbItem :to="{name:'home'}">
-            <Icon type="ios-home-outline"></Icon>课程3
-          </BreadcrumbItem>
-        </Breadcrumb>-->
-        <Tabs
-          size="small"
-          type="card"
-          @on-tab-remove="handleTableRemove"
-          @on-click="getTabsContent"
-        >
-          <TabPane v-for="(item, index) in tabs" :key="index" :label="item.index"></TabPane>
-        </Tabs>
         <router-view/>
       </Content>
     </Layout>
@@ -57,6 +37,8 @@
 <script>
 export default {
   name: 'layout',
+  components: {
+  },
   data() {
     return {
       isCollapsed: false,
@@ -97,6 +79,7 @@ export default {
     height: 100vh;
     left: 0;
     // overflow: auto;
+    padding-top: 16px;
   }
   .layout_sec {
     margin-left: 200px;
@@ -105,7 +88,7 @@ export default {
       box-shadow: 0 2px 3px 2px #cccccc;
     }
     .content {
-      padding: 0 16px 16px;
+      // padding: 0 16px 16px;
       .nav_sec {
         margin: 16px 0;
       }

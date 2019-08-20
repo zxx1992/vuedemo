@@ -8,7 +8,7 @@
 
 <script>
 // @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+// import HelloWorld from "@/components/HelloWorld.vue";
 // 组件懒加载
 // const HelloWorld = () => import("@/components/HelloWorld.vue");
 export default {

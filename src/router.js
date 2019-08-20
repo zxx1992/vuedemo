@@ -43,7 +43,15 @@ const router = new Router({
           },
           meta: {
             keepAlive: true
-          }
+          },
+          redirect: {name: "shopbox"},
+          children: [
+            {
+              path:"shopbox",
+              name:"shopbox",
+              component: () => import(/* webpackChunkName: "shopbox" */ "./views/Shopbox.vue")
+            }
+          ]
         }
       ]
     }
