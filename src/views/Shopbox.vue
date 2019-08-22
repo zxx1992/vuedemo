@@ -160,14 +160,14 @@ export default {
     //   增加数量
     handleAdd(index) {
       this.dataShop[index].count++;
-      this.init()
+      
     },
     // 减少数量
     handleReduce(index) {
-      // 这个判断是因为，如果我们没有用button，而是其他元素，div,span，则disabled属性不可用，所以这里加了双重判断
+      // 这个判this.init()断是因为，如果我们没有用button，而是其他元素，div,span，则disabled属性不可用，所以这里加了双重判断
       if (this.dataShop[index].count === 0) return;
       this.dataShop[index].count--;
-      this.totalPrices = 0;
+      this.init()
     },
     //删除该商品
     handleRemove(index) {
