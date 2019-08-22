@@ -149,20 +149,25 @@ export default {
           count: 0
         }
       ],
-      removeModal: false,//删除模态框
-      totalPrices: 0,// 总价钱
+      removeModal: false, //删除模态框
+      totalPrices: 0 // 总价钱
     };
   },
   methods: {
+    init() {
+      this.totalPrices = 0;
+    },
     //   增加数量
     handleAdd(index) {
       this.dataShop[index].count++;
+      this.init()
     },
     // 减少数量
     handleReduce(index) {
       // 这个判断是因为，如果我们没有用button，而是其他元素，div,span，则disabled属性不可用，所以这里加了双重判断
       if (this.dataShop[index].count === 0) return;
       this.dataShop[index].count--;
+      this.totalPrices = 0;
     },
     //删除该商品
     handleRemove(index) {
@@ -172,7 +177,7 @@ export default {
     confirmRemove(index) {
       this.dataShop.splice(index, 1);
       this.removeModal = false;
-      this.totalPrices = 0;
+      this.init();
     },
     cancelRemove() {
       this.removeModal = false;
@@ -194,7 +199,7 @@ export default {
       this.getTotalPrices(selection);
     },
     getTotalPrices(selection) {
-      this.totalPrices = 0;
+      this.init();
       selection.map((value, index) => {
         this.totalPrices += value.count * value.price;
       });
@@ -209,6 +214,9 @@ export default {
     //   // 将结果转化为带有千位分隔符的数字
     //   return total.toString().replace(/\B(?=(\d{3}) +$)/g, ",");
     // }
+  },
+  mounted() {
+    this.init();
   }
 };
 </script>
@@ -222,7 +230,7 @@ export default {
       background: #ffffff;
       border-color: #ffffff;
       color: #ed4014;
-          font-size: 18px;
+      font-size: 18px;
     }
   }
   // 改变模态框原生样式
