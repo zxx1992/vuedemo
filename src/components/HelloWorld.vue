@@ -1,6 +1,14 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+    <h1>{{ initMsg }}</h1>
+    <h1 :style="style">{{ isNotString }}{{isNotString.length}}</h1>
+    <Button type="primary" @click="handleAdd">Add</Button>
+    /
+    <Button type="error" @click="handleReduce">Reduce</Button>
+    /
+    <Button type="success" @click="handleClick">+</Button>
+    <input :value="value" @input="updateValue">
     <p>
       For a guide and recipes on how to configure / customize this project,<br />
       check out the
@@ -106,7 +114,60 @@
 export default {
   name: "HelloWorld",
   props: {
-    msg: String
+    msg: String,
+    message: {
+      type: String,
+      validator:function (value) {
+        return value.substr(1,6)
+      }
+    },
+    // 这里如果props的值类型非字符串，则父组件中需要使用v-bind指令，不然取到的为字符串
+    isNotString: {
+      // type:Array,
+      required: true,
+      default: function () {
+        return []
+      }
+    },
+    width: Number,
+    value: 0
+  },
+  data () {
+    return {
+      initMsg: this.message,
+      counter: 0
+    }
+  },
+  mounted() {
+    this.initMsg = "子组件改变父组件传过来的值",
+    console.log(this.$parent)
+  },
+  computed: {
+    style() {
+      return {
+        width: this.width + 'px'
+      }
+    }
+  },
+  methods: {
+    // 触发父组件的方法
+    handleAdd() {
+      this.counter++;
+      this.$emit('increase', this.counter)
+    },
+    handleReduce() {
+      this.counter--;
+      this.$emit('reduce', this.counter)
+    },
+
+    handleClick() {
+      this.counter++;
+      this.$emit('input', this.counter)
+    },
+    updateValue(event) {
+      console.log(event)
+      this.$emit('input', event.target.value)
+    }
   }
 };
 </script>

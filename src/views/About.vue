@@ -2,27 +2,50 @@
   <div class="about">
     <!-- <h1 v-clock>{{rawhtml}}</h1> -->
     <h1>{{rawhtml}}</h1>
-    <h2><span v-html="rawhtml"></span></h2>
-    <template v-if="data.length">
+    <h2>
+      <span v-html="rawhtml"></span>
+    </h2>
+    <div v-if="data.length">
       <div class="list">
         <ul>
           <li v-for="(item, index) in data" :key="index">{{item.name}}</li>
         </ul>
       </div>
-    <Page
-      class="pageSize"
-      :total="pageTotal"
-      show-sizer
-      :page-size="pageSize"
-      @on-page-size-change="getPageSize"
-    />
-    </template>
+      <Page
+        class="pageSize"
+        :total="pageTotal"
+        show-sizer
+        :page-size="pageSize"
+        @on-page-size-change="getPageSize"
+      />
+    </div>
     <div v-else>暂无数据</div>
     <Button type="primary" @click="vClockTest">默认按钮</Button>
+    <div>
+      <table>
+        <tbody>
+          <!-- <HelloWorld :message="parentMsg" isNotString="[1,2,3]"></HelloWorld> -->
+          <HelloWorld
+            :message="parentMsg"
+            :isNotString="[1,2,3]"
+            :width="300"
+            @increase="handleGetTotal"
+            @reduce="handleGetTotal"
+            v-model="total"
+            ref="child"
+          ></HelloWorld>
+          <h1 ref="ele">{{total}}</h1>
+          <Button type="error" @click="handleClickReduce">-</Button>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 <script>
 export default {
+  components: {
+    HelloWorld: () => import("@/components/HelloWorld.vue")
+  },
   data() {
     return {
       data: [
@@ -86,7 +109,9 @@ export default {
       ],
       pageSize: 10,
       pageTotal: 0,
-      rawhtml: '<span style="color:red">我是v-html指令</span>'
+      rawhtml: '<span style="color:red">我是v-html指令</span>',
+      parentMsg: "about父组件向子组件传递的数据1",
+      total: 0
     };
   },
   methods: {
@@ -97,14 +122,26 @@ export default {
     scrollToTop() {
       window.scrollTo(0, 0);
     },
-    vClockTest () {
-      this.rawhtml = 'v-clock指令，dom只渲染一次'
+    vClockTest() {
+      this.rawhtml = "v-clock指令，dom只渲染一次";
+    },
+    handleGetTotal(total) {
+      this.total = total;
+    },
+    handleClickReduce() {
+      this.total--
+      console.log(this.$refs.child)
     }
   },
   activated() {
     this.scrollToTop();
   },
-  mounted() {}
+  // 注意 mounted 不会承诺所有的子组件也都一起被挂载。
+  // 如果你希望等到整个视图都渲染完毕，可以用 vm.$nextTick 替换掉 mounted：
+  mounted() {
+    console.log(this.$refs.child)//undefined
+    console.log(this.$refs.ele)//p元素 
+  }
 };
 </script>
 <style lang="scss">
