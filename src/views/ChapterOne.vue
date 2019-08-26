@@ -1,6 +1,6 @@
 <template>
     <div>
-        <inputAddReduce :value="value"  @handleAdd="handleAdd" @handleReduce="handleReduce"></inputAddReduce>
+        <inputAddReduce v-model="value" :max="max" :min="min" @handleAdd="handleAdd" @handleReduce="handleReduce"></inputAddReduce>
     </div>
 </template>
 <script>
@@ -11,7 +11,7 @@ export default {
     },
     data () {
          return {
-             value: 1,
+             value: 5,
              max: 10,
              min: 1
          }
