@@ -4,7 +4,7 @@
       <Menu
         theme="dark"
         width="auto"
-        active-name="1-1"
+        active-name=""
         accordion
         :open-names="['1']"
         :class="menuitemClasses"
@@ -14,8 +14,8 @@
             <Icon type="ios-paper" />文科
           </template>
           <MenuItem :to="{ name: 'shopbox' }" name="1-1">购物车</MenuItem>
-          <MenuItem :to="{ name: '' }" name="1-2">历史</MenuItem>
-          <MenuItem :to="{ name: '' }" name="1-3">地理</MenuItem>
+          <MenuItem :to="{ name: 'chapterOne' }" name="1-2">chapterOne</MenuItem>
+          <MenuItem :to="{ name: 'chapterTwo' }" name="1-3">chapterTwo</MenuItem>
         </Submenu>
         <Submenu name="2">
           <template slot="title">

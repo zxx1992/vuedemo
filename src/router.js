@@ -50,6 +50,16 @@ const router = new Router({
               path:"shopbox",
               name:"shopbox",
               component: () => import(/* webpackChunkName: "shopbox" */ "./views/Shopbox.vue")
+            },
+            {
+              path:"chapterOne",
+              name:"chapterOne",
+              component: () => import(/* webpackChunkName: "chapterOne" */ "./views/ChapterOne.vue")
+            },
+            {
+              path:"chapterTwo",
+              name:"chapterTwo",
+              component: () => import(/* webpackChunkName: "chapterOne" */ "./views/ChapterTwo.vue")
             }
           ]
         }
