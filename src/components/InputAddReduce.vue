@@ -5,7 +5,7 @@
 
 <template>
   <div>
-    <input type="text" :value="currenVal" @change="handleChange" />
+    <input type="text" :value="currenVal" @change="handleChange" @keydown="handleKeydown"/>
     <Button @click="handleAdd" :disabled="currenVal > max ? true : false">Add</Button>
     <Button @click="handleReduce" :disabled="currenVal < min ? true : false">Reduce</Button>
   </div>
@@ -28,6 +28,10 @@ export default {
     min: {
       type: Number,
       default: -Infinity
+    },
+    step: {
+      type: Number,
+      default: 0
     }
   },
   data() {
@@ -39,12 +43,12 @@ export default {
     // 子组件通过绑定事件，向父组件传值
     handleAdd() {
       // 触发父组件中的方法，
-      this.$emit("handleAdd");
+      this.$emit("handleAdd", this.step);
       // if (this.currenVal >= this.max) return;
       // this.currenVal++;
     },
     handleReduce() {
-      this.$emit("handleReduce");
+      this.$emit("handleReduce", this.step);
       // if (this.currenVal <= this.min) return;
       // this.currenVal--;
     },
@@ -65,6 +69,9 @@ export default {
       } else {
         event.target.value = this.currenVal;
       }
+    },
+    handleKeydown(event) {
+      this.$emit("handleKeydown",event)
     }
   },
   mounted() {
