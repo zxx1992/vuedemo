@@ -1,14 +1,14 @@
 import Vue from "vue";
 import Router from "vue-router";
 // import Home from "./views/Home.vue";
-// 路由懒加载，
+// 路由懒加载，即按需加载，也可以使用 require.ensure ，这里我们都采用import
 const Home = () => import('./views/Home.vue');
 
 Vue.use(Router);
 
 const router = new Router({
   mode: "history",
-  base: process.env.BASE_URL,
+  base: process.env.BASE_URL,//动态获取二级目录
   routes: [
     {
       path: "/",
