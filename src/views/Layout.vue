@@ -21,7 +21,7 @@
           <template slot="title">
             <Icon type="ios-paper" />理科
           </template>
-          <MenuItem :to="{ name: '' }" name="2-1">物理</MenuItem>
+          <MenuItem :to="{ name: 'tabs' }" name="2-1">tabs</MenuItem>
           <MenuItem :to="{ name: '' }" name="2-2">化学</MenuItem>
           <MenuItem :to="{ name: '' }" name="2-3">生物</MenuItem>
         </Submenu>

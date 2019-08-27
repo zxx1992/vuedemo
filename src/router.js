@@ -60,6 +60,11 @@ const router = new Router({
               path:"chapterTwo",
               name:"chapterTwo",
               component: () => import(/* webpackChunkName: "chapterOne" */ "./views/ChapterTwo.vue")
+            },
+            {
+              path:"tabs",
+              name:"tabs",
+              component: () => import(/* webpackChunkName: "chapterOne" */ "./views/TabsPane/Tabs.vue")
             }
           ]
         }
