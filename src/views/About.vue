@@ -1,14 +1,14 @@
 <template>
   <div class="about">
     <!-- <h1 v-clock>{{rawhtml}}</h1> -->
-    <h1>{{rawhtml}}</h1>
+    <h1>{{ rawhtml }}</h1>
     <h2>
       <span v-html="rawhtml"></span>
     </h2>
     <div v-if="data.length">
       <div class="list">
         <ul>
-          <li v-for="(item, index) in data" :key="index">{{item.name}}</li>
+          <li v-for="(item, index) in data" :key="index">{{ item.name }}</li>
         </ul>
       </div>
       <Page
@@ -27,24 +27,26 @@
           <!-- <HelloWorld :message="parentMsg" isNotString="[1,2,3]"></HelloWorld> -->
           <HelloWorld
             :message="parentMsg"
-            :isNotString="[1,2,3]"
+            :isNotString="[1, 2, 3]"
             :width="300"
             @increase="handleGetTotal"
             @reduce="handleGetTotal"
             v-model="total"
             ref="child"
           ></HelloWorld>
-          <h1 ref="ele">{{total}}</h1>
+          <h1 ref="ele">{{ total }}</h1>
           <Button type="error" @click="handleClickReduce">-</Button>
         </tbody>
       </table>
     </div>
+    <Header></Header>
   </div>
 </template>
 <script>
 export default {
   components: {
-    HelloWorld: () => import("@/components/HelloWorld.vue")
+    HelloWorld: () => import("@/components/HelloWorld.vue"),
+    Header: () => import("./Header.vue")
   },
   data() {
     return {
@@ -129,8 +131,8 @@ export default {
       this.total = total;
     },
     handleClickReduce() {
-      this.total--
-      console.log(this.$refs.child)
+      this.total--;
+      console.log(this.$refs.child);
     }
   },
   activated() {
@@ -139,8 +141,8 @@ export default {
   // 注意 mounted 不会承诺所有的子组件也都一起被挂载。
   // 如果你希望等到整个视图都渲染完毕，可以用 vm.$nextTick 替换掉 mounted：
   mounted() {
-    console.log(this.$refs.child)//undefined
-    console.log(this.$refs.ele)//p元素 
+    console.log(this.$refs.child); //undefined
+    console.log(this.$refs.ele); //p元素
   }
 };
 </script>
